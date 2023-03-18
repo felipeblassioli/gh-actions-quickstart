@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+          fetch-depth: 2  # OR "2" -> To retrieve the preceding commit.
 
       # Example 1
       - name: Get changed files
@@ -41,12 +41,12 @@ jobs:
         id: changed-files-specific
         uses: tj-actions/changed-files@v35
         with:
-          files: docs/*.{js,html}  # Alternatively using: `docs/**` or `docs`
+          files: app/**  # Alternatively using: `docs/**` or `docs`
 
       - name: Run step if any file(s) in the docs folder change
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          echo "One or more files in the docs folder has changed."
+          echo "One or more files in the app folder has changed."
           echo "List all the files that have changed: ${{ steps.changed-files-specific.outputs.all_changed_files }}"
 
       # Example 3
@@ -57,7 +57,7 @@ jobs:
           files: |
             **/*.js
             static
-          files_ignore: docs
+          files_ignore: app
 
       - name: Run step if any *.js file(s) or any file in the static folder change
         if: steps.changed-files-excluded.outputs.any_changed == 'true'
