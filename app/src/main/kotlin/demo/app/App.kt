@@ -11,4 +11,5 @@ fun main() {
     val tokens = StringUtils.split(MessageUtils.getMessage())
     val result = StringUtils.join(tokens)
     println(WordUtils.capitalize(result))
+    println("Hello world!")
 }
